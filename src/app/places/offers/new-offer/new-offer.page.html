@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Offer</ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCreateOffer()" [disabled]="!newOfferForm.valid">
+        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newOfferForm">
+    <ion-grid fixed>
+      
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input type="text" formControlName="title" autocorrect autocomplete></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Short Description</ion-label>
+            <ion-textarea rows="3" formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+          <!-- displaying errors for decription input -->
+              <ion-row *ngIf="!newOfferForm.get('description').valid && newOfferForm.get('description').touched">
+                <ion-col size-sm="6" offset-sm="3">
+                  <p class="error-messages">*Description Must be between 1 and 180 Characters</p>
+                </ion-col>
+              </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>        
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Available from:</ion-label>
+            <ion-datetime type="number" formControlName="dateFrom" min="2019-01-01" max="2020-08-31"></ion-datetime>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size-sm="3">
+          <ion-item>
+            <ion-label position="floating">Available to:</ion-label>
+            <ion-datetime type="number" formControlName="dateTo" min="2019-01-02" max="2020-08-31"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <app-location-picker></app-location-picker>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+</ion-content>

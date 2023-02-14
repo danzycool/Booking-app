@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/tabs/discover"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{ isLoading ? 'Loading...' : place.title }}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" class="ion-text-center">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <ion-grid fixed *ngIf="!isLoading">
+
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        
+          <ion-img [src]="place.imageUrl"></ion-img>
+        
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-text class="ion-text-center">{{ place.description }}</ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-button color="primary" class="ion-text-center" (click)="onBookPlace()"
+    *ngIf="isBookable"
+  >Book This Place</ion-button>
+
+</ion-content>
